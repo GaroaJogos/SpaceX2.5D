@@ -12,5 +12,9 @@ public class Mover : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.velocity = transform.forward * speed;
+
+        //Debug.Log(this.gameObject.tag == "Bolt");
+
+
     }
 }
