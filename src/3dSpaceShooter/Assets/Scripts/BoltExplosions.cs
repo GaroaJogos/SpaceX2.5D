@@ -24,21 +24,15 @@ public class BoltExplosions : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.tag != parent.tag)
-        {
-            Instantiate(playerExplotion, other.transform.position, other.transform.rotation);
-            Destroy(gameObject);
-            Destroy(other.gameObject);
-        }
+        //if (other.tag != parent.tag)
+        // {
+        //     Instantiate(playerExplotion, other.transform.position, other.transform.rotation);     
+        //  }
 
-
+        //Destroy(gameObject);
+        //Destroy(other.gameObject);
 
         //gameController.AddScore(scoreValue);
-        
-
-
-
-
     }
 
     public void setParent(GameObject parent)

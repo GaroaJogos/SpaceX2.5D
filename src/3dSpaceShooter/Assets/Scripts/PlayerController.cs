@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject shot;
     public GameObject player;
-    public Transform shotSpawn;
+    public Transform shotSpawn1;
+    public Transform shotSpawn2;
+    private bool shot2 = false;
     public float fireRate;
 
     private float nextFire;
@@ -37,57 +39,43 @@ public class PlayerController : MonoBehaviour
         switch(player.name)
         {
             case "Player":
-                if ((Input.GetButton("Fire1Joy1")) && (Time.time > nextFire))
-                {
-                    nextFire = Time.time + fireRate;
-                    GameObject child = Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                    BoltExplosions boltExplosions = child.GetComponent<BoltExplosions>();
-                    boltExplosions.setParent(this.gameObject);
-                    sound.Play();
-                }
+                firePlayer("Fire1Joy1");
                 break;
 
 
             case "Player2":
-                if ((Input.GetButton("Fire1Joy2")) && (Time.time > nextFire2))
-                {
-                    nextFire2 = Time.time + fireRate;
-                    GameObject child = Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                    BoltExplosions boltExplosions = child.GetComponent<BoltExplosions>();
-                    boltExplosions.setParent(this.gameObject);
-                    sound.Play();
-                }
+                firePlayer("Fire1Joy2");
                 break;
 
             case "Player3":
-                if ((Input.GetButton("Fire1Joy3")) && (Time.time > nextFire3))
-                {
-                    nextFire3 = Time.time + fireRate;
-                    GameObject child = Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                    BoltExplosions boltExplosions = child.GetComponent<BoltExplosions>();
-                    boltExplosions.setParent(this.gameObject);
-                    sound.Play();
-                }
+                firePlayer("Fire1Joy3");
                 break;
 
             case "Player4":
-                if ((Input.GetButton("Fire1Joy4")) && (Time.time > nextFire4))
-                {
-                    nextFire4 = Time.time + fireRate;
-                    GameObject child = Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                    BoltExplosions boltExplosions = child.GetComponent<BoltExplosions>();
-                    boltExplosions.setParent(this.gameObject);
-                    sound.Play();
-                }
+                firePlayer("Fire1Joy4");
                 break;
         }
     }
 
-    private void firePlayer()
+    private void firePlayer(string input)
     {
-        
+        if ((Input.GetButton(input)) && (Time.time > nextFire))
         {
-            
+            GameObject child = null;
+
+            if (shotSpawn2 != null)
+                shot2 = !shot2;
+
+            if (shot2)
+                child = Instantiate(shot, shotSpawn2.position, shot.transform.rotation);
+            else
+                child = Instantiate(shot, shotSpawn1.position, shot.transform.rotation);
+
+            nextFire = Time.time + fireRate;
+            BoltExplosions boltExplosions = child.GetComponent<BoltExplosions>();
+
+            boltExplosions.setParent(this.gameObject);
+            sound.Play();
         }
     }
 
@@ -106,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "Player2":
-                playerRotation = 90f;
+                //playerRotation = 90f;
                 moveHorizontal = Input.GetAxis("HorizontalJoy2");
                 moveVertical = Input.GetAxis("VerticalJoy2") * (-1);
                 break;
@@ -135,6 +123,25 @@ public class PlayerController : MonoBehaviour
             Mathf.Clamp(rigidbody.position.z, boundary.zMin, boundary.zMax)
         );
 
-        rigidbody.rotation = Quaternion.Euler(0.0f, playerRotation, rigidbody.velocity.z * -tilt);
+
+        switch (player.name)
+        {
+            case "Player":
+                rigidbody.rotation = Quaternion.Euler(0.0f, playerRotation, rigidbody.velocity.z * -tilt * (-1));
+                break;
+
+            case "Player2":
+                rigidbody.rotation = Quaternion.Euler(rigidbody.velocity.z * -tilt * (-1), playerRotation, 0f);
+                break;
+
+            case "Player3":
+                rigidbody.rotation = Quaternion.Euler(0.0f, playerRotation, rigidbody.velocity.z * -tilt * (-1));
+                break;
+
+            case "Player4":
+                rigidbody.rotation = Quaternion.Euler(0.0f, playerRotation, rigidbody.velocity.z * -tilt * (-1));
+                break;
+        }
+        
     }
 }

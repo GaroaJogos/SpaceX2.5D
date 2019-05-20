@@ -10,11 +10,12 @@ public class Mover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(this.gameObject.name);
+
+        if (this.gameObject.name == "Missil3(Clone)")
+            speed = speed * (-1);
+
         rigidbody = GetComponent<Rigidbody>();
-        rigidbody.velocity = transform.forward * speed;
-
-        //Debug.Log(this.gameObject.tag == "Bolt");
-
-
+        rigidbody.velocity = transform.up * speed;
     }
 }
