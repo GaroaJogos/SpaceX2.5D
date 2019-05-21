@@ -40,19 +40,22 @@ public class PlayerController : MonoBehaviour
         {
             case "Player":
                 firePlayer("Fire1Joy1");
+                //firePlayer("Fire1");
                 break;
-
 
             case "Player2":
                 firePlayer("Fire1Joy2");
+                //firePlayer("Fire1");
                 break;
 
             case "Player3":
                 firePlayer("Fire1Joy3");
+                //firePlayer("Fire1");
                 break;
 
             case "Player4":
-                firePlayer("Fire1Joy4");
+                //firePlayer("Fire1Joy4");
+                firePlayer("Fire1");
                 break;
         }
     }
@@ -91,24 +94,39 @@ public class PlayerController : MonoBehaviour
                 playerRotation = 90f;
                 moveHorizontal = Input.GetAxis("HorizontalJoy1");
                 moveVertical = Input.GetAxis("VerticalJoy1");
+
+                //moveHorizontal = Input.GetAxis("Horizontal");
+                //moveVertical = Input.GetAxis("Vertical");
+
                 break;
 
             case "Player2":
                 //playerRotation = 90f;
                 moveHorizontal = Input.GetAxis("HorizontalJoy2");
                 moveVertical = Input.GetAxis("VerticalJoy2") * (-1);
+
+                //moveHorizontal = Input.GetAxis("Horizontal");
+                //moveVertical = Input.GetAxis("Vertical");
                 break;
 
             case "Player3":
                 playerRotation = 270f;
                 moveHorizontal = Input.GetAxis("HorizontalJoy3");
                 moveVertical = Input.GetAxis("VerticalJoy3") * (-1);
+
+                //moveHorizontal = Input.GetAxis("Horizontal");
+                //moveVertical = Input.GetAxis("Vertical");
+
                 break;
 
             case "Player4":
-                playerRotation = 270f;
-                moveHorizontal = Input.GetAxis("HorizontalJoy4");
-                moveVertical = Input.GetAxis("VerticalJoy4") * (-1);
+                playerRotation = 180f;
+                //moveHorizontal = Input.GetAxis("HorizontalJoy4");
+                //moveVertical = Input.GetAxis("VerticalJoy4") * (-1);
+
+                moveHorizontal = Input.GetAxis("Horizontal");
+                moveVertical = Input.GetAxis("Vertical");
+
                 break;
         }
 
@@ -139,7 +157,8 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "Player4":
-                rigidbody.rotation = Quaternion.Euler(0.0f, playerRotation, rigidbody.velocity.z * -tilt * (-1));
+                //rigidbody.rotation = Quaternion.Euler(0.0f, playerRotation, rigidbody.velocity.z * -tilt * (-1));
+                rigidbody.rotation = Quaternion.Euler(rigidbody.velocity.z * -tilt, playerRotation, 0f);
                 break;
         }
         

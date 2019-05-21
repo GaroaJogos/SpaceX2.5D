@@ -10,8 +10,6 @@ public class Mover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(this.gameObject.name);
-
         if (this.gameObject.name == "Missil3(Clone)")
             speed = speed * (-1);
 
