@@ -54,8 +54,8 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "Player4":
-                //firePlayer("Fire1Joy4");
-                firePlayer("Fire1");
+                firePlayer("Fire1Joy4");
+                //firePlayer("Fire1");
                 break;
         }
     }
@@ -121,11 +121,11 @@ public class PlayerController : MonoBehaviour
 
             case "Player4":
                 playerRotation = 180f;
-                //moveHorizontal = Input.GetAxis("HorizontalJoy4");
-                //moveVertical = Input.GetAxis("VerticalJoy4") * (-1);
+                moveHorizontal = Input.GetAxis("HorizontalJoy4");
+                moveVertical = Input.GetAxis("VerticalJoy4") * (-1);
 
-                moveHorizontal = Input.GetAxis("Horizontal");
-                moveVertical = Input.GetAxis("Vertical");
+                //moveHorizontal = Input.GetAxis("Horizontal");
+                //moveVertical = Input.GetAxis("Vertical");
 
                 break;
         }
