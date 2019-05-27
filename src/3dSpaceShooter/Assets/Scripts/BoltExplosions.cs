@@ -34,7 +34,7 @@ public class BoltExplosions : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.tag != parent.tag)
+        if ( (other != null) && (parent != null) && (other.tag != parent.tag) )
         {
             Instantiate(playerExplotion, transform.position, transform.rotation);
             Destroy(gameObject);
@@ -58,7 +58,6 @@ public class BoltExplosions : MonoBehaviour
 
         if (other.gameObject.name.StartsWith("Asteroide") )
         {
-            Debug.Log(parent.tag);
             switch (parent.tag)
             {
                 case "Player":
